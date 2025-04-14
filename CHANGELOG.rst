@@ -2,8 +2,8 @@
 Changelog for package python_qt_binding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+100.0.0 (2025-04-14)
+--------------------
 * Merge pull request `#1 <https://github.com/savioke/python_qt_binding/issues/1>`_ from v4hn/pr-obese-sip5
   Migrating to SIP5 layouts - still supports sip4
 * fix sip4 generator
