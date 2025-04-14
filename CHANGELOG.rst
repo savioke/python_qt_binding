@@ -2,6 +2,35 @@
 Changelog for package python_qt_binding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge pull request `#1 <https://github.com/savioke/python_qt_binding/issues/1>`_ from v4hn/pr-obese-sip5
+  Migrating to SIP5 layouts - still supports sip4
+* fix sip4 generator
+  sip4 does not adhere to PEP-3149
+  https://peps.python.org/pep-3149/
+  by default, so we force it to do so in the name of consistency with the sip5 generator.
+* avoid distutils
+* disable build isolation
+  Isolation is not needed as we expect to build in the system
+  environment. Additionally the isolation wrappers can break
+  sip-specific build commands by hiding the path of `sip-distinfo`.
+* split relative and absolute libs for pyproject.toml
+  This is somewhat hacky, but at least passes all libraries to the linker.
+  The previous version of this block was plain broken in the sip5 transition.
+* use correct EXT_SUFFIX
+  e.g. `.cpython-310-x86_64-linux-gnu.so` instead of just '.so'
+* allow exceptions
+  this is not the default, but some ROS-specific bindings break without it in header-inline throw statements (e.g. in Poco/Mutex_POSIX.h)
+* Adding SIP 5 integration.
+* workaround for new path sip dir in pyqt5 >= 5.15.0+dfsg-1+exp1
+* Replace deprecated distutils.spawn.find_executable with shutil.which
+* Merge branch 'silent-external-warnings' into obese-devel
+* Use PyQt5 module path to find SIP bindings (`#105 <https://github.com/savioke/python_qt_binding/issues/105>`_)
+  `sipconfig._pkg_config['default_mod_dir']` is currently used to find the PyQt5 SIP bindings, but this location is determined by where SIP is installed, which may not be the same as where PyQt5 is installed. A real world example of this is in Nix, where each package is installed to a separate isolated directory. Instead, we can use `PyQt5.__path_\_[0]`, which will always point to the location of the PyQt5 module.
+* silent compiler warnings via -isystem includes
+* Contributors: Ben Wolsieffer, Jochen Sprickerhof, Michael Görner, Robert Haschke, seanyen, v4hn
+
 0.4.4 (2021-07-15)
 ------------------
 * add check for sip binding install directory on archlinux (`#95 <https://github.com/ros-visualization/python_qt_binding/issues/95>`_)
